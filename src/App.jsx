@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"; // React Router v6に合わせて修正
+import reactLogo from "./assets/pokemon.png";
+import "./App.css";
+import NewComponent from "./newTest"; // 新しいコンポーネントをインポート
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
+    <Router> {/* Routerでアプリ全体を囲む */}
+      <div className="App">
+        <header className="App-header">
           <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
+          <h1>Hello</h1>
+          
+          {/* ボタンをクリックしたときにNewComponentに遷移 */}
+          <Link to="/new-page">
+            <button>ボタン</button>
+          </Link>
+        </header>
+        
+        {/* Routesに変更 */}
+        <Routes>
+          <Route path="/new-page" element={<NewComponent />} />
+          {/* 他のルートを必要に応じて追加 */}
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
